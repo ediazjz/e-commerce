@@ -2,6 +2,8 @@ import type { AppProps } from "next/app"
 
 import { createClient, Provider } from "urql"
 
+import { Layout } from "../components"
+
 import "../styles/globals.css"
 
 const client = createClient({
@@ -10,9 +12,11 @@ const client = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider value={client}>
-      <Component {...pageProps} />
-    </Provider>
+    <Layout>
+      <Provider value={client}>
+        <Component {...pageProps} />
+      </Provider>
+    </Layout>
   )
 }
 

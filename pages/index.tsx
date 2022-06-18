@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const products = data?.products.data
 
   return (
-    <main className="container flex h-screen w-screen flex-col items-center justify-center">
+    <main className="container flex w-screen flex-col items-center justify-center lg:h-screen">
       {fetching ? (
         <p>Loading...</p>
       ) : error ? (
