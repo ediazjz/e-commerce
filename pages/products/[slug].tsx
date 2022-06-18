@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent, useContext, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
@@ -6,9 +6,12 @@ import { useQuery } from "urql"
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
 
 import { GET_PRODUCT } from "../../lib/queries"
+import { useQuantity } from "../../lib/contexts"
 
 const ProductDetails: FunctionComponent = () => {
   const { query } = useRouter()
+
+  const { quantity, increaseQuantity, decreaseQuantity } = useQuantity()
 
   const [{ data, fetching, error }] = useQuery({
     query: GET_PRODUCT,
@@ -43,11 +46,11 @@ const ProductDetails: FunctionComponent = () => {
           </div>
 
           <div className="mt-4 flex w-full items-center justify-between">
-            <button className="">
+            <button onClick={decreaseQuantity}>
               <MinusCircleIcon className="h-8 w-8 transition-all duration-200 ease-linear hover:text-blue-600" />
             </button>
-            <span>Cantidad</span>
-            <button>
+            <span>{quantity}</span>
+            <button onClick={increaseQuantity}>
               <PlusCircleIcon className="h-8 w-8 transition-all duration-200 ease-linear hover:text-blue-600" />
             </button>
           </div>
