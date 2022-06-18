@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         <>
           <h1>Products</h1>
 
-          <div className="grid w-full grid-cols-4 gap-4">
+          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((product) => (
               <Product
                 key={product.attributes.slug}

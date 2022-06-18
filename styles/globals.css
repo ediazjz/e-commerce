@@ -57,3 +57,28 @@
     @apply text-2xs md:text-xs xl:text-sm;
   }
 }
+
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply flex cursor-pointer items-center justify-center space-x-2 rounded-md border border-solid px-5 py-2 text-center font-bold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 md:px-6 xl:space-x-3 xl:px-7;
+  }
+  .btn-primary {
+    @apply border-accent bg-accent text-white hover:border-accent-dark hover:bg-accent-dark disabled:hover:border-accent disabled:hover:bg-accent;
+  }
+  .btn-primary-outlined {
+    @apply border-accent bg-transparent text-accent hover:border-accent-dark hover:text-accent-dark disabled:hover:border-accent disabled:hover:text-accent;
+  }
+  .btn-secondary {
+    @apply border-secondary-light bg-secondary-light text-white hover:border-secondary hover:bg-secondary disabled:hover:border-secondary-light disabled:hover:bg-secondary-light;
+  }
+  .btn-secondary-outlined {
+    @apply border-secondary-light bg-transparent text-secondary-light hover:border-secondary hover:text-secondary disabled:hover:border-secondary-light disabled:hover:text-secondary-light;
+  }
+  .btn-ghost {
+    @apply border-none text-inky-lighter hover:text-inky disabled:hover:text-inky-lighter;
+  }
+  .btn-icon {
+    @apply h-6 w-6 md:h-7 md:w-7 xl:h-8 xl:w-8;
+  }
+}
