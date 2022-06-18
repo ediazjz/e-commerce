@@ -11,20 +11,24 @@ const Home: NextPage = () => {
   const products = data?.products.data
 
   return (
-    <main className="flex h-screen w-screen items-center justify-center bg-blue-400">
+    <main className="container flex h-screen w-screen flex-col items-center justify-center">
       {fetching ? (
         <p>Loading...</p>
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (
-        <div className="text-white">
-          {products.map((product) => (
-            <Product
-              key={product.attributes.slug}
-              content={product.attributes}
-            />
-          ))}
-        </div>
+        <>
+          <h1>Products</h1>
+
+          <div className="grid w-full grid-cols-4 gap-4">
+            {products.map((product) => (
+              <Product
+                key={product.attributes.slug}
+                content={product.attributes}
+              />
+            ))}
+          </div>
+        </>
       )}
     </main>
   )
