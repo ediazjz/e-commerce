@@ -3,7 +3,7 @@ import type { AppProps } from "next/app"
 import { createClient, Provider } from "urql"
 
 import { Layout } from "../components"
-import { QuantityProvider } from "../lib/contexts"
+import { CartProvider, QuantityProvider } from "../lib/contexts"
 
 import "../styles/globals.css"
 
@@ -13,13 +13,15 @@ const client = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QuantityProvider>
-      <Layout>
-        <Provider value={client}>
-          <Component {...pageProps} />
-        </Provider>
-      </Layout>
-    </QuantityProvider>
+    <CartProvider>
+      <QuantityProvider>
+        <Layout>
+          <Provider value={client}>
+            <Component {...pageProps} />
+          </Provider>
+        </Layout>
+      </QuantityProvider>
+    </CartProvider>
   )
 }
 

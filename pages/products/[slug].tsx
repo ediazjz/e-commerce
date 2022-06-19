@@ -6,12 +6,13 @@ import { useQuery } from "urql"
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
 
 import { GET_PRODUCT } from "../../lib/queries"
-import { useQuantity } from "../../lib/contexts"
+import { useCart, useQuantity } from "../../lib/contexts"
 
 const ProductDetails: FunctionComponent = () => {
   const { query } = useRouter()
 
   const { quantity, increaseQuantity, decreaseQuantity } = useQuantity()
+  const { addItem } = useCart()
 
   const [{ data, fetching, error }] = useQuery({
     query: GET_PRODUCT,
@@ -56,7 +57,15 @@ const ProductDetails: FunctionComponent = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary mt-8 w-full">Add to cart</button>
+        <button
+          onClick={(): void => {
+            console.log(data.products.data[0].attributes)
+            addItem(data?.products.data[0].attributes, quantity)
+          }}
+          className="btn btn-primary mt-8 w-full"
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   )
