@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { ShoppingBagIcon } from "@heroicons/react/solid"
 
+import { Cart } from "./Cart"
 import { useCart } from "../lib/contexts"
 
 export const Navbar: FunctionComponent = () => {
@@ -22,6 +23,8 @@ export const Navbar: FunctionComponent = () => {
 
           {totalQuantity > 0 && <span>{totalQuantity}</span>}
         </div>
+
+        {isCartOpen && <Cart />}
       </div>
     </div>
   )
