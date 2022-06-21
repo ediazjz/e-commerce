@@ -1,6 +1,7 @@
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
+import { FunctionComponent } from "react"
 import Image from "next/image"
 
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
 const { motion } = require("framer-motion")
 
 import { useCart } from "../lib/contexts"
@@ -22,7 +23,7 @@ const cardListVariants = {
   },
 }
 
-export const Cart = () => {
+export const Cart: FunctionComponent = () => {
   const { cartItems, toggleCart, addItem, removeItem, totalPrice } = useCart()
 
   return (
