@@ -5,6 +5,7 @@ import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
 const { motion } = require("framer-motion")
 
 import { useCart } from "../lib/contexts"
+import getStripe from "../lib/stripe"
 
 // Animation Variants
 const cardVariants = {
@@ -25,6 +26,27 @@ const cardListVariants = {
 
 export const Cart: FunctionComponent = () => {
   const { cartItems, toggleCart, addItem, removeItem, totalPrice } = useCart()
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe()
+
+    // Refactor later to follow TS types and standards
+    const response = fetch("/api/stripe/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartItems),
+    }).then((res) => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+
+    const { session } = await response
+    await stripe.redirectToCheckout({ sessionId: session.id })
+  }
 
   return (
     <motion.aside
@@ -108,7 +130,12 @@ export const Cart: FunctionComponent = () => {
 
             <motion.div layout>
               <h3 className="h5 my-8 text-right">Total: $ {totalPrice}</h3>
-              <button className="btn btn-primary w-full">Purchase</button>
+              <button
+                onClick={handleCheckout}
+                className="btn btn-primary w-full"
+              >
+                Purchase
+              </button>
             </motion.div>
           </div>
         )}
