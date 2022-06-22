@@ -45,7 +45,7 @@ export const Cart: FunctionComponent = () => {
     })
 
     const { session } = await response
-    await stripe.redirectToCheckout({ sessionId: session.id })
+    await stripe?.redirectToCheckout({ sessionId: session.id })
   }
 
   return (

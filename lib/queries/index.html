@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popout Test</title>
+    <meta charset="UTF-8" />
+    <style>
+      .container {
+        position: relative;
+      }
+      .content {
+        width: 10em;
+        max-height: 5em;
+        overflow: scroll;
+      }
+      .dropdown {
+        position: absolute;
+        background-color: #ccc;
+        overflow: visible;
+        display: none;
+      }
+      :hover > .dropdown {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Popout Test</h1>
+    <div class="container">
+      <ol class="content">
+        <li>Alpha</li>
+        <li>Bravo</li>
+        <li>
+          Charlie &gt;
+
+          <div class="content">
+            <ul class="dropdown">
+              <li>One</li>
+              <li>Two</li>
+              <li>Three</li>
+              <li>Four</li>
+              <li>Five</li>
+              <li>Six</li>
+            </ul>
+
+            <select></select>
+
+            <button></button>
+          </div>
+          <div>hola</div>
+        </li>
+        <li>Delta</li>
+        <li>Echo</li>
+        <li>Foxtrot</li>
+        <li>Golf</li>
+      </ol>
+    </div>
+  </body>
+</html>
