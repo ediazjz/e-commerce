@@ -5,10 +5,15 @@ import { useQuery } from "urql"
 import { Product } from "../components"
 import { GET_PRODUCTS } from "../lib/queries"
 
+// Refactor later to follow TS types and standards
+type Product = {
+  attributes: any
+}
+
 const Home: NextPage = () => {
   const [{ data, fetching, error }] = useQuery({ query: GET_PRODUCTS })
 
-  const products = data?.products.data
+  const products: Product[] = data?.products.data
 
   return (
     <main className="container flex w-screen flex-col items-center justify-center lg:h-screen">
