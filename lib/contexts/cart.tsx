@@ -85,9 +85,8 @@ export const CartProvider: FunctionComponent<CartProvider> = ({ children }) => {
       setCartItems((previousState) =>
         previousState.filter((cartItem) => cartItem.slug !== item.slug)
       )
-    } else {
+    } else if (itemExists) {
       // Decrease quantity
-      // Debug this later
       setCartItems((previousState) =>
         previousState.map((cartItem) =>
           cartItem.slug === item.slug
