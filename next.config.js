@@ -3,7 +3,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com", "avatars.dicebear.com"],
+    domains: [
+      "res.cloudinary.com",
+      "s.gravatar.com",
+      "lh3.googleusercontent.com",
+    ],
   },
   i18n: {
     locales: ["es", "en"],

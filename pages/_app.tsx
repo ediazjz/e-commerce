@@ -1,3 +1,4 @@
+import { UserProvider } from "@auth0/nextjs-auth0"
 import type { AppProps } from "next/app"
 
 import { createClient, Provider } from "urql"
@@ -13,15 +14,17 @@ const client = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <CartProvider>
-      <QuantityProvider>
-        <Layout>
-          <Provider value={client}>
-            <Component {...pageProps} />
-          </Provider>
-        </Layout>
-      </QuantityProvider>
-    </CartProvider>
+    <UserProvider>
+      <CartProvider>
+        <QuantityProvider>
+          <Layout>
+            <Provider value={client}>
+              <Component {...pageProps} />
+            </Provider>
+          </Layout>
+        </QuantityProvider>
+      </CartProvider>
+    </UserProvider>
   )
 }
 
