@@ -11,7 +11,7 @@ export const UserIcon: FunctionComponent = () => {
 
   return user && !error && !isLoading ? (
     <div className="mr-4">
-      <Link href={`/profile/${user?.nickname}`}>
+      <Link href={`/user/${user?.nickname}`}>
         <Image
           src={
             user?.picture ||
