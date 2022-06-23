@@ -7,7 +7,7 @@ export default async function processCheckout(req, res) {
   const session = getSession(req, res)
   const stripeId = session?.user[`${process.env.BASE_URL}/stripe_customer_id`]
 
-  console.log(user)
+  console.log(session)
 
   if (req.method === "POST") {
     try {

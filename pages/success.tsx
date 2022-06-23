@@ -1,5 +1,6 @@
 import { NextPage } from "next"
 import Link from "next/link"
+import formatMoney from "../lib/formatMoney"
 
 const { motion } = require("framer-motion")
 
@@ -60,8 +61,8 @@ const Success: NextPage<ISuccess> = ({ order }) => {
               {order.line_items.data.map((item: any) => (
                 <li key={item.id}>
                   <p>
-                    {item.quantity} x {item.description} ( ${" "}
-                    {item.price.unit_amount / 100} USD)
+                    {item.quantity} x {item.description} (
+                    {formatMoney(item.price.unit_amount, "USD")} USD)
                   </p>
                 </li>
               ))}

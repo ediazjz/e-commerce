@@ -1,6 +1,8 @@
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0"
 import Link from "next/link"
 
+import formatMoney from "../../lib/formatMoney"
+
 const stripe = require("stripe")(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`)
 
 export const getServerSideProps = withPageAuthRequired({
@@ -40,7 +42,7 @@ const Profile = ({ user, orders }) => {
               className="mb-4 flex items-center justify-between rounded-lg bg-white p-4"
             >
               <h3 className="h6 w-1/2">Order number: {order.id}</h3>
-              <span>$ {order.amount / 100} USD</span>
+              <span>{formatMoney(order.amount, "USD")} USD</span>
 
               <span>
                 Status:{" "}
