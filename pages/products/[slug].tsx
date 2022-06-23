@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useState } from "react"
+import { FunctionComponent, useEffect } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
@@ -12,8 +12,13 @@ import { useCart, useQuantity } from "../../lib/contexts"
 const ProductDetails: FunctionComponent = () => {
   const { query } = useRouter()
 
-  const { quantity, increaseQuantity, decreaseQuantity } = useQuantity()
+  const { quantity, increaseQuantity, decreaseQuantity, resetQuantity } =
+    useQuantity()
   const { addItem } = useCart()
+
+  useEffect(() => {
+    resetQuantity(1)
+  }, [])
 
   const [{ data, fetching, error }] = useQuery({
     query: GET_PRODUCT,
