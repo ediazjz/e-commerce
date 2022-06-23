@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import Image from "next/image"
 
 import { useQuery } from "urql"
+import toast from "react-hot-toast"
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
 
 import { GET_PRODUCT } from "../../lib/queries"
@@ -23,6 +24,12 @@ const ProductDetails: FunctionComponent = () => {
   if (error) return <p>Oh no... {error.message}</p>
 
   const { title, description, price, image } = data?.products.data[0].attributes
+
+  const notify = () => {
+    toast.success(`${title} added to your cart`, {
+      duration: 1500,
+    })
+  }
 
   return (
     <div className="container flex flex-wrap py-8">
@@ -61,6 +68,7 @@ const ProductDetails: FunctionComponent = () => {
           onClick={(): void => {
             console.log(data.products.data[0].attributes)
             addItem(data?.products.data[0].attributes, quantity)
+            notify()
           }}
           className="btn btn-primary mt-8 w-full"
         >

@@ -2,6 +2,7 @@ import { UserProvider } from "@auth0/nextjs-auth0"
 import type { AppProps } from "next/app"
 
 import { createClient, Provider } from "urql"
+import { Toaster } from "react-hot-toast"
 
 import { Layout } from "../components"
 import { CartProvider, QuantityProvider } from "../lib/contexts"
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QuantityProvider>
           <Layout>
             <Provider value={client}>
+              <Toaster />
               <Component {...pageProps} />
             </Provider>
           </Layout>
