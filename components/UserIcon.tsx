@@ -12,16 +12,18 @@ export const UserIcon: FunctionComponent = () => {
   return user && !error && !isLoading ? (
     <div className="mr-4">
       <Link href={`/user/${user?.nickname}`}>
-        <Image
-          src={
-            user?.picture ||
-            `https://avatars.dicebear.com/api/avataaars/${user?.nickname}.svg`
-          }
-          alt={user?.name || "User profile picture"}
-          width={32}
-          height={32}
-          className="rounded-full"
-        />
+        <a>
+          <Image
+            src={
+              user?.picture ||
+              `https://avatars.dicebear.com/api/avataaars/${user?.nickname}.svg`
+            }
+            alt={user?.name || "User profile picture"}
+            width={32}
+            height={32}
+            className="rounded-full"
+          />
+        </a>
       </Link>
     </div>
   ) : (
