@@ -37,7 +37,7 @@ export default async function processCheckout(req, res) {
             quantity: item.quantity,
           })),
           success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: `${req.headers.origin}/cancel`,
+          cancel_url: `${req.headers.origin}/`,
         })
 
         res.status(200).json({ session })
@@ -74,7 +74,7 @@ export default async function processCheckout(req, res) {
             quantity: item.quantity,
           })),
           success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: `${req.headers.origin}/cancel`,
+          cancel_url: `${req.headers.origin}/`,
         })
 
         res.status(200).json({ session })
