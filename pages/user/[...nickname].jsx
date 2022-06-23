@@ -1,5 +1,7 @@
-import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0"
+import Head from "next/head"
 import Link from "next/link"
+
+import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0"
 
 import formatMoney from "../../lib/formatMoney"
 
@@ -26,41 +28,47 @@ const Profile = ({ user, orders }) => {
   console.log(orders)
 
   return (
-    user && (
-      <div className="container py-8">
-        <div className="mb-12">
-          <h2>Hola {user.nickname}!</h2>
-          <p>Logged in as: {user.email}</p>
+    <>
+      <Head>
+        <title>My profile | Diaz Commerce</title>
+      </Head>
+
+      {user && (
+        <div className="container py-8">
+          <div className="mb-12">
+            <h2>Hola {user.nickname}!</h2>
+            <p>Logged in as: {user.email}</p>
+          </div>
+
+          <div>
+            <h1>My orders:</h1>
+
+            {orders.map((order) => (
+              <div
+                key={order.id}
+                className="mb-4 flex items-center justify-between rounded-lg bg-white p-4"
+              >
+                <h3 className="h6 w-1/2">Order number: {order.id}</h3>
+                <span>{formatMoney(order.amount, "USD")} USD</span>
+
+                <span>
+                  Status:{" "}
+                  {order.status === "succeeded"
+                    ? "Paid"
+                    : order.status === "canceled"
+                    ? "Canceled"
+                    : "Unpaid"}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <Link href="/api/auth/logout">
+            <a className="btn btn-secondary">Logout</a>
+          </Link>
         </div>
-
-        <div>
-          <h1>My orders:</h1>
-
-          {orders.map((order) => (
-            <div
-              key={order.id}
-              className="mb-4 flex items-center justify-between rounded-lg bg-white p-4"
-            >
-              <h3 className="h6 w-1/2">Order number: {order.id}</h3>
-              <span>{formatMoney(order.amount, "USD")} USD</span>
-
-              <span>
-                Status:{" "}
-                {order.status === "succeeded"
-                  ? "Paid"
-                  : order.status === "canceled"
-                  ? "Canceled"
-                  : "Unpaid"}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <Link href="/api/auth/logout">
-          <a className="btn btn-secondary">Logout</a>
-        </Link>
-      </div>
-    )
+      )}
+    </>
   )
 }
 
