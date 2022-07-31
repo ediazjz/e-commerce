@@ -41,7 +41,7 @@ const Profile = ({ user, orders }) => {
           </div>
 
           <div>
-            <h1>My orders:</h1>
+            <h1>Past orders:</h1>
 
             {orders.map((order) => (
               <div
